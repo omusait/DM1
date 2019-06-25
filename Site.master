@@ -1,0 +1,129 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeFile="Site.master.vb" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />     
+    <title><%: Page.Title %> - OM USA DataMart</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <asp:PlaceHolder runat="server">
+        <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>
+    </asp:PlaceHolder>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent"> 
+   </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form runat="server">
+
+    <asp:ScriptManager runat="server">
+        <Scripts>
+            <asp:ScriptReference Name="jquery" />
+            <asp:ScriptReference Name="jquery.ui.combined" />
+        </Scripts>
+        </asp:ScriptManager>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title"><a runat="server" href="~/">OM USA DataMart</a></p>
+            </div>
+            <div class="float-right" >
+                <!--
+                <section id="login">
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul>
+                                <li><a id="registerLink" runat="server" href="~/Account/Register">Register</a></li>
+                                <li><a id="loginLink" runat="server" href="~/Account/Login">Log in</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <p>
+                                Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                    <asp:LoginName runat="server" CssClass="username" />
+                                </a>!
+                                <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
+                            </p>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </section>
+                -->
+                <nav>
+                    <div class ="float-right"> 
+                    <asp:Menu ID="Menu1" runat="server"  DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="Medium"  Orientation="Horizontal" StaticSubMenuIndent="10px" BackColor="#F7F6F3" ForeColor="Gray">
+                        <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
+                        <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                        <DynamicMenuStyle BackColor="#CCCCCC"/>
+                        <DynamicSelectedStyle BackColor="#5D7B9D" />
+                        <Items>
+                            <asp:MenuItem Text="Home" Value="Home" NavigateUrl="~/Default.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Interfaces" Value="Interfaces">
+                                <asp:MenuItem Text="ATS" Value="ATS">
+                                    <asp:MenuItem NavigateUrl="~/ATSOMer.aspx" Text="OM Prov" Value="OM Prov"></asp:MenuItem>
+                                </asp:MenuItem>
+                                <asp:MenuItem Text="ADP" Value="ADP">
+                                    <asp:MenuItem NavigateUrl="~/IADPCaleb.aspx" Text="Caleb Upload" Value="Caleb Upload"></asp:MenuItem>
+                                </asp:MenuItem>
+                                <asp:MenuItem Text="Virtuous " Value="Virtuous">
+                                    <asp:MenuItem NavigateUrl="~/IVTOMIDs.aspx" Text="Virtuous OMIDs" Value="Virtuous OMIDs"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/IVTCaleb.aspx" Text="Virtuous Caleb Upload" Value="Virtuous Caleb Upload"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/IVTGiftTx.aspx" Text="Virtuous Gift Transactions" Value="Virtuous Gift Transactions"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/IVTAdminFees.aspx" Text="Virtuous Admin Fees" Value="Virtuous Admin Fees"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/IVTRGS.aspx" Text="Virtuous Recipient Gift Statement" Value="RGS"></asp:MenuItem>
+                                </asp:MenuItem>
+                                <asp:MenuItem Text="Virtuous Labs  _" Value="Virtuous Labs">
+                                    <asp:MenuItem NavigateUrl="~/IVTGiftTxLabs.aspx" Text="Gift Transactions" Value="Gift Transactions"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/IVTAdminFeesLabs.aspx" Text="Admin Fees" Value="Admin Fees"></asp:MenuItem>
+                                </asp:MenuItem>
+                                <asp:MenuItem Text="XLedger  " Value="XLedger">
+                                    <asp:MenuItem NavigateUrl="~/IXLSettlement.aspx" Text="HOSA Settlement" Value="HOSA Settlement"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/IXLSettlementOMer.aspx" Text="OMer Clearing" Value="OMer Clearing"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/IXLCalebFundFund.aspx" Text="Caleb Fund/Fund" Value="Caleb Fund/Fund"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/IVTtoXLProjects.aspx" Text="Add New Projects From Virtuous" Value="Add New Projects From Virtuous"></asp:MenuItem>
+                                </asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem Text="Catalog" Value="Catalog">
+                                <asp:MenuItem Text="OM Units" Value="OM Units" NavigateUrl="~/CatOMUnits.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="OM KMPs" Value="OM KMPs" NavigateUrl="~/CatOMKMPs.aspx"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/CatVTProjects.aspx" Text="VT Projects" Value="VT Projects"></asp:MenuItem>
+                                <asp:MenuItem Text="XL Projects" Value="XL Projects" NavigateUrl="~/CatXLProjects.aspx"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/CatXLProjectReport.aspx" Text="XL Project Report" Value="XL Project Report"></asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem Text="Admin" Value="Admin">
+                                <asp:MenuItem NavigateUrl="~/AdminLogs.aspx" Text="Logs" Value="Logs"></asp:MenuItem>
+                                <asp:MenuItem Text="New OMID" Value="OMID" NavigateUrl="~/AdminGenerateOMID.aspx"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/AdminPackageConfig.aspx" Text="Package Config" Value="Package Config"></asp:MenuItem>
+                            </asp:MenuItem>
+                        </Items>
+                        <StaticHoverStyle BackColor="#666666" ForeColor="White" />
+                        <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                        <StaticSelectedStyle BackColor="#5D7B9D" />
+                    </asp:Menu>
+                </div>
+              </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+        <!-- RWE 11/28/2018 left margin changed with style directive -->
+        <!-- <section class="content-wrapper main-content clear-fix" > -->
+        <section class="content-wrapper main-content clear-fix" >
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>
+                    &copy; <%: DateTime.Now.Year %> - Operation Mobilization
+                </p>
+            </div>
+        </div>
+    </footer>
+    </form>
+</body>
+</html>
